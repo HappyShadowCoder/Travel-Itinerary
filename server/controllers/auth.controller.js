@@ -1,4 +1,5 @@
 import jwt from "jsonwebtoken";
+import requestIp from "request-ip";
 import User from "../models/User.model.js";
 
 const generateToken = (id) =>
@@ -19,7 +20,17 @@ export const register = async (req, res) => {
     if (exists)
       return res.status(400).json({ error: "Email already registered" });
 
-    const user = await User.create({ name, email, password });
+    // IP check — 1 account per IP
+    const ip = requestIp.getClientIp(req);
+    if (ip) {
+      const ipExists = await User.findOne({ registrationIP: ip });
+      if (ipExists)
+        return res.status(400).json({
+          error: "An account already exists from this device/network. Please sign in instead.",
+        });
+    }
+
+    const user = await User.create({ name, email, password, registrationIP: ip });
 
     res.status(201).json({
       success: true,
