@@ -2,7 +2,7 @@
 
 > A full-stack MERN + AI web app that generates personalized day-by-day travel itineraries for any destination in Rajasthan. 
 
-[Live Demo](travel-itinerary-git-main-happyshadowcoders-projects.vercel.app)
+Live Demo : `travel-itinerary-git-main-happyshadowcoders-projects.vercel.app`
 
 ---
 
