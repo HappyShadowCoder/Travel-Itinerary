@@ -16,6 +16,7 @@ const PORT = process.env.PORT || 8000;
 app.use(helmet());
 app.use(cors({
   origin: (origin, callback) => {
+    // Allow any localhost port in dev, or the configured CLIENT_URL in prod
     if (!origin || origin.startsWith("http://localhost") || origin === process.env.CLIENT_URL) {
       callback(null, true);
     } else {
