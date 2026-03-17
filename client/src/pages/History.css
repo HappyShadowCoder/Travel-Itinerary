@@ -1,0 +1,243 @@
+/* ── HISTORY PAGE THEME ─────────────────────────── */
+:root {
+  --primary-gold: #f59e0b;
+  --danger-red: #ef4444;
+  --text-main: #1e293b;
+  --text-muted: #64748b;
+  --bg-soft: #fcfaf8;
+  --white: #ffffff;
+  --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.05);
+  --shadow-lg: 0 12px 30px rgba(0, 0, 0, 0.1);
+}
+
+.history {
+  min-height: 100vh;
+  background-color: var(--bg-soft);
+  color: var(--text-main);
+  font-family: 'Inter', sans-serif;
+}
+
+/* NAVBAR */
+.navbar {
+  background: var(--white);
+  padding: 15px 0;
+  border-bottom: 1px solid #e2e8f0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.nav-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem;
+}
+
+.logo {
+  font-size: 1.4rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.new-trip-btn {
+  background: var(--text-main);
+  color: var(--white);
+  border: none;
+  padding: 8px 18px;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.new-trip-btn:hover {
+  background: #334155;
+}
+
+/* HEADER */
+.history-header {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 3rem 2rem 2rem;
+}
+
+.history-header h1 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 8px;
+  letter-spacing: -0.02em;
+}
+
+.history-header p {
+  color: var(--text-muted);
+}
+
+/* GRID LAYOUT */
+.history-content {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 2rem 5rem;
+}
+
+.history-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+/* CARDS */
+.history-card {
+  background: var(--white);
+  border: 1px solid #e2e8f0;
+  border-radius: 20px;
+  padding: 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+  animation: cardFadeIn 0.5s ease-out both;
+}
+
+.history-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--primary-gold);
+}
+
+.hcard-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1.2rem;
+}
+
+.location-tag {
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.budget-tag {
+  font-size: 0.75rem;
+  font-weight: 700;
+  background: #fff7ed;
+  color: #c2410c;
+  padding: 4px 10px;
+  border-radius: 20px;
+}
+
+.hcard-body h3 {
+  font-size: 1.3rem;
+  font-weight: 800;
+  margin-bottom: 0.8rem;
+}
+
+.interests-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 1.5rem;
+}
+
+.interest-pill {
+  font-size: 0.7rem;
+  font-weight: 600;
+  background: #f1f5f9;
+  color: #475569;
+  padding: 4px 10px;
+  border-radius: 8px;
+  text-transform: capitalize;
+}
+
+/* CARD FOOTER */
+.hcard-footer {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid #f1f5f9;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.trip-date {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+/* DESTRUCTIVE BUTTON */
+.delete-action-btn {
+  background: var(--white);
+  color: var(--danger-red);
+  border: 1px solid #fee2e2;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: 0.2s;
+}
+
+.delete-action-btn:hover:not(:disabled) {
+  background: var(--danger-red);
+  color: var(--white);
+  border-color: var(--danger-red);
+}
+
+.delete-action-btn.loading {
+  background: #f8fafc;
+  cursor: not-allowed;
+  border: 1px solid #e2e8f0;
+}
+
+/* SPINNERS */
+.spinner-main {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #e2e8f0;
+  border-top-color: var(--primary-gold);
+  border-radius: 50%;
+  margin: 2rem auto;
+  animation: spin 1s linear infinite;
+}
+
+.spinner-btn {
+  width: 14px;
+  height: 14px;
+  border: 2px solid #fecaca;
+  border-top-color: var(--danger-red);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+/* EMPTY STATES */
+.status-container {
+  text-align: center;
+  padding: 5rem 0;
+}
+
+.empty-icon { font-size: 3rem; margin-bottom: 1rem; }
+.cta-btn {
+  margin-top: 1.5rem;
+  padding: 12px 24px;
+  background: var(--primary-gold);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* ANIMATIONS */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes cardFadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
