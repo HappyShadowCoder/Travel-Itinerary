@@ -52,7 +52,7 @@ export default function Auth() {
               <label>Full Name</label>
               <input
                 type="text"
-                placeholder="Your full name"
+                placeholder="John Doe"
                 value={form.name}
                 onChange={(e) => setForm({ ...form, name: e.target.value })}
               />
