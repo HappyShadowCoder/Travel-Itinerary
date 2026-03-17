@@ -1,8 +1,8 @@
 # 🗺️ Travel Itinerary — AI-Powered Travel Planner for Rajasthan
 
-> A full-stack MERN + AI web app that generates personalized day-by-day travel itineraries for any destination in Rajasthan. Built as a mini version of [MysTrip](https://mystrip.in)'s core feature.
+> A full-stack MERN + AI web app that generates personalized day-by-day travel itineraries for any destination in Rajasthan. 
 
-[**Live Demo:**](travel-itinerary-git-main-happyshadowcoders-projects.vercel.app)
+[**Live Demo**](travel-itinerary-git-main-happyshadowcoders-projects.vercel.app)
 
 ---
 
