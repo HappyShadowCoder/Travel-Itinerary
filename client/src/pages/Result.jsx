@@ -53,7 +53,7 @@ export default function Result() {
       pdf.setTextColor(255, 255, 255);
       pdf.setFont("helvetica", "bold");
       pdf.setFontSize(20);
-      pdf.text("MysTrip", margin, 13);
+      pdf.text("Travel Itinerary", margin, 13);
       pdf.setFontSize(10);
       pdf.setFont("helvetica", "normal");
       pdf.text("AI Travel Itinerary", margin, 21);
