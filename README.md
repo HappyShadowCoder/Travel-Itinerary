@@ -1,31 +1,37 @@
-# 🗺️ MysTrip — AI Travel Itinerary Generator
+# 🗺️ Travel Itinerary — AI-Powered Travel Planner for Rajasthan
 
-> Built as a mini version of [MysTrip](https://mystrip.in)'s core feature — AI-powered personalized travel itineraries for Jaipur, Rajasthan.
+> A full-stack MERN + AI web app that generates personalized day-by-day travel itineraries for any destination in Rajasthan. Built as a mini version of [MysTrip](https://mystrip.in)'s core feature.
 
-**Live Demo:** `https://mystrip-demo.vercel.app` ← _update after deploy_
+**Live Demo:** `https://travel-itinerary.vercel.app` ← _update after deploy_
 
 ---
 
-## ✨ What it does
+## ✨ Features
 
-Enter your preferences and get a **day-by-day AI-generated Jaipur itinerary** in seconds:
-
-- 📅 Number of days (1–7)
-- 💰 Budget (Budget / Mid-Range / Premium)  
-- ❤️ Interests (History, Food, Adventure, Shopping, Art, Nature…)
-
-The app calls **Gemini AI** to generate structured itineraries with place names, timings, and local tips — then saves everything to **MongoDB** so you can revisit past trips.
+- 🤖 **AI Itinerary Generation** — GPT-4o-mini generates detailed day-by-day plans
+- 📍 **15 Rajasthan Destinations** — Jaipur, Udaipur, Jodhpur, Jaisalmer + custom input
+- 💰 **Budget Picker** — Budget / Mid-Range / Premium with ₹ ranges
+- ❤️ **Interest Tags** — History, Food, Adventure, Shopping, Art, Nature, Photography, Spiritual
+- ⚡ **Smart Cache** — Identical trips served instantly from DB, no API call
+- 🔒 **JWT Auth** — Register, login, each user sees only their own data
+- 📊 **Daily Limit** — 3 AI generations per user per day with usage bar
+- 🗑️ **Delete Plans** — Remove past itineraries from history
+- 🔗 **Share Link** — Every itinerary has a unique shareable URL
+- 📄 **Export PDF** — Download a branded PDF of any itinerary
+- 💾 **MongoDB Storage** — All itineraries saved and retrievable
 
 ---
 
 ## 🛠️ Tech Stack
 
-| Layer    | Tech                          |
-|----------|-------------------------------|
-| Frontend | React + Vite + React Router   |
-| Backend  | Node.js + Express             |
-| Database | MongoDB + Mongoose            |
-| AI       | Google Gemini 1.5 Flash API   |
+| Layer    | Tech                              |
+|----------|-----------------------------------|
+| Frontend | React + Vite + React Router       |
+| Backend  | Node.js + Express                 |
+| Database | MongoDB + Mongoose                |
+| AI       | OpenAI GPT-4o-mini                |
+| Auth     | JWT + bcryptjs                    |
+| PDF      | jsPDF (client-side)               |
 | Deploy   | Vercel (client) + Render (server) |
 
 ---
@@ -34,23 +40,41 @@ The app calls **Gemini AI** to generate structured itineraries with place names,
 
 ### Prerequisites
 - Node.js 18+
-- MongoDB running locally (or MongoDB Atlas URI)
-- [Gemini API key](https://aistudio.google.com) (free)
+- MongoDB (local or Atlas)
+- [OpenAI API key](https://platform.openai.com/api-keys)
 
 ### Backend
 ```bash
 cd server
 cp .env.example .env      # fill in your keys
 npm install
-npm run dev               # http://localhost:5000
+npm run dev               # http://localhost:8000
 ```
 
 ### Frontend
 ```bash
 cd client
-cp .env.example .env
 npm install
 npm run dev               # http://localhost:5173
+```
+
+---
+
+## ⚙️ Environment Variables
+
+### `server/.env`
+```
+PORT=8000
+MONGO_URI=your_mongodb_uri
+OPENAI_API_KEY=your_openai_key
+JWT_SECRET=your_jwt_secret
+CLIENT_URL=http://localhost:5173
+DAILY_LIMIT=3
+```
+
+### `client/.env`
+```
+VITE_API_URL=http://localhost:8000/api
 ```
 
 ---
@@ -58,36 +82,49 @@ npm run dev               # http://localhost:5173
 ## 📁 Project Structure
 
 ```
-mystrip/
+Travel-Itinerary/
 ├── server/
-│   ├── config/db.js              # MongoDB connection
-│   ├── models/Itinerary.model.js # Mongoose schema
-│   ├── controllers/              # Gemini AI + CRUD logic
-│   ├── routes/                   # Express routes
-│   └── index.js                  # Server entry point
+│   ├── config/db.js
+│   ├── middleware/auth.middleware.js
+│   ├── models/
+│   │   ├── User.model.js
+│   │   └── Itinerary.model.js
+│   ├── controllers/
+│   │   ├── auth.controller.js
+│   │   └── itinerary.controller.js
+│   ├── routes/
+│   │   ├── auth.routes.js
+│   │   └── itinerary.routes.js
+│   └── index.js
 └── client/
     └── src/
-        ├── api/itinerary.js      # Axios helpers
-        ├── pages/
-        │   ├── Home.jsx          # Generator form
-        │   ├── Result.jsx        # Itinerary display
-        │   └── History.jsx       # Past trips from DB
-        └── App.jsx               # Router
+        ├── api/itinerary.js
+        ├── context/AuthContext.jsx
+        └── pages/
+            ├── Auth.jsx
+            ├── Home.jsx
+            ├── Result.jsx
+            └── History.jsx
 ```
 
 ---
 
 ## 🌐 API Endpoints
 
-| Method | Endpoint                       | Description              |
-|--------|--------------------------------|--------------------------|
-| POST   | `/api/itineraries/generate`    | Generate + save itinerary |
-| GET    | `/api/itineraries`             | List all past itineraries |
-| GET    | `/api/itineraries/:id`         | Get one by ID             |
-| GET    | `/api/health`                  | Health check              |
+| Method | Endpoint | Auth | Description |
+|--------|----------|------|-------------|
+| POST | `/api/auth/register` | ❌ | Register new user |
+| POST | `/api/auth/login` | ❌ | Login |
+| GET | `/api/auth/me` | ✅ | Get current user |
+| POST | `/api/itineraries/generate` | ✅ | Generate + save itinerary |
+| GET | `/api/itineraries` | ✅ | List user's itineraries |
+| GET | `/api/itineraries/usage` | ✅ | Today's usage stats |
+| GET | `/api/itineraries/:id` | ✅ | Get one itinerary |
+| DELETE | `/api/itineraries/:id` | ✅ | Delete itinerary |
+| GET | `/api/health` | ❌ | Health check |
 
 ---
 
-## 🏰 About MysTrip
+## 🏰 About
 
-MysTrip is a Jaipur-based startup building AI-powered travel experiences for Rajasthan — personalized itineraries, trekking, and curated place catalogues. This project was built to demonstrate their core feature using the MERN stack + Gemini AI.
+Built to demonstrate the core feature of [MysTrip](https://mystrip.in) — a Jaipur-based startup building AI-powered travel experiences for Rajasthan. This project was developed to understand their MERN + AI stack and showcase product thinking.
