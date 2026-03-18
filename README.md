@@ -124,7 +124,3 @@ Travel-Itinerary/
 | GET | `/api/health` | ❌ | Health check |
 
 ---
-
-## 🏰 About
-
-Built to demonstrate the core feature of [MysTrip](https://mystrip.in) — a Jaipur-based startup building AI-powered travel experiences for Rajasthan. This project was developed to understand their MERN + AI stack and showcase product thinking.
