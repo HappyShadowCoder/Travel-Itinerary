@@ -31,7 +31,7 @@ export default function Auth() {
   return (
     <div className="auth-page">
       <div className="auth-brand">
-        <span className="logo">🗺️ MysTrip</span>
+        <span className="logo">🗺️ Travel Itinerary</span>
         <h1>Welcome to the Land of Kings</h1>
         <p>AI-powered travel planning for Rajasthan</p>
       </div>
