@@ -50,7 +50,7 @@ export default function History() {
     <div className="history">
       <nav className="navbar">
         <div className="nav-container">
-          <span className="logo" onClick={() => navigate("/")}>🗺️ MysTrip</span>
+          <span className="logo" onClick={() => navigate("/")}>🗺️ Travel Itinerary</span>
           <button className="new-trip-btn" onClick={() => navigate("/")}>
             <span>+</span> New Trip
           </button>
