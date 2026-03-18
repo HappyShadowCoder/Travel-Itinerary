@@ -156,7 +156,7 @@ export default function Result() {
   return (
     <div className="result">
       <nav className="navbar">
-        <span className="logo" onClick={() => navigate("/")} style={{ cursor: "pointer" }}>🗺️ MysTrip</span>
+        <span className="logo" onClick={() => navigate("/")} style={{ cursor: "pointer" }}>🗺️ Travel Itinerary</span>
         <div className="nav-right">
           <a href="/history">Past Itineraries</a>
           <button className="new-btn" onClick={() => navigate("/")}>+ New Trip</button>

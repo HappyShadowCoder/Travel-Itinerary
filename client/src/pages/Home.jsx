@@ -87,7 +87,7 @@ export default function Home() {
     <div className="home">
       <nav className="navbar">
         <div className="nav-container">
-          <span className="logo" onClick={() => navigate("/")}>🗺️ MysTrip</span>
+          <span className="logo" onClick={() => navigate("/")}>🗺️ Travel Itinerary</span>
           <div className="nav-right">
             <a href="/history" className="nav-link">Past Itineraries</a>
             <span className="nav-user">👋 {user?.name}</span>
