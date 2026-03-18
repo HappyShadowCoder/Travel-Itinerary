@@ -96,7 +96,7 @@ export default function Auth() {
         </div>
 
         <p className="auth-switch">
-          {mode === "login" ? "New to MysTrip? " : "Already a traveler? "}
+          {mode === "login" ? "New to Travel Itinerary? " : "Already a traveler? "}
           <button 
             className="switch-toggle"
             onClick={() => { setMode(mode === "login" ? "register" : "login"); setError(""); }}
