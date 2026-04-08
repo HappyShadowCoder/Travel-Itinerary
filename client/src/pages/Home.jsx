@@ -237,6 +237,14 @@ export default function Home() {
             `✨ Generate ${activeDestination} Itinerary`
           )}
         </button>
+        <a
+          href="https://github.com/HappyShadowCoder"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="github-link"
+        >
+        🔗 View Developer GitHub
+        </a>
       </div>
     </div>
   );
